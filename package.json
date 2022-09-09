@@ -4,7 +4,7 @@
   "description": "Secure APP to store sensitive information",
   "main": "index.ts",
   "scripts": {
-    "build": "prisma generate",
+    "build": "prisma migrate dev",
     "build": "tsc",
     "start": "node dist/app.js",
 

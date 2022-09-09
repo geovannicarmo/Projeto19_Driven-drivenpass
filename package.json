@@ -4,7 +4,7 @@
   "description": "Secure APP to store sensitive information",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc && prisma generate",
+    "build": "tsc && prisma generate && prisma migrate dev",
     
     "start": "node dist/index",
 

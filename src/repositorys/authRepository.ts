@@ -32,6 +32,15 @@ export async function findByEmail(email: string){
 }
 
 
+export async function findUserByIdRepository(idUser: number){
+
+   return await client.users.findFirst({
+        where:{id:idUser}
+    })
+
+}
+
+
 export interface ISigin 
 {
     email: string,

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {singinSevice, loginService} from "../services/singinSevice";
+import {singinSevice, loginService} from "../services/authSevice";
 
 
 export  async function singinController(req: Request, res: Response){

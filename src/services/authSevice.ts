@@ -2,7 +2,7 @@ import { ISigin } from "../repositorys/authRepository"
 import * as authRepository from '../repositorys/authRepository'
 import { IError } from "../middlewares/errorHandlingMiddleware"
 import bcrypt from 'bcrypt' 
-import jwt from 'jsonwebtoken'
+import jwt, { verify } from 'jsonwebtoken'
 
 
 export  async function singinSevice(dataSignin: ISigin){
@@ -49,6 +49,17 @@ if(SECRET===undefined){
 const token = jwt.sign({iduser}, SECRET, config)
 
    return {token}
+}
+
+
+export async function findUserByIdService(idUser: number){
+
+    const dataUser = await authRepository.findUserByIdRepository(idUser)
+
+    if(dataUser===undefined){
+        const erro:IError = {code: "not-found", details: "User not found"}; 
+        throw erro
+    }
 }
 
 

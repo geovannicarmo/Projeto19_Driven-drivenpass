@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { insertCredentialsServices } from "../services/credentialsService";
+import { IError } from "../middlewares/errorHandlingMiddleware";
+import { insertCredentialsServices, getAllCredentialsService, getCredentialService, deleteCredentialService } from "../services/credentialsService";
 
 export async function postCredentialsController(req: Request, res: Response){
 
@@ -9,15 +10,44 @@ export async function postCredentialsController(req: Request, res: Response){
 
    dataCredentials.userId = idUser
 
-   await insertCredentialsServices(dataCredentials, idUser)
+   await insertCredentialsServices(dataCredentials)
 
-     res.send(req.body)
-
+   return res.status(201).send("Registration successfully complete")
 }
-
 
 export  async function getCredentialsController(req: Request, res: Response){
 
-    res.send(req.body)
+    const idUser = res.locals.idUser
 
+    const idCredentials = Number(req.params.idcredential)
+
+    console.log(idCredentials)
+
+    if(idCredentials){
+      const dados = await getCredentialService(idUser, idCredentials)
+    
+      return res.status(200).send(dados)
+      
+    }
+
+    const dados = await getAllCredentialsService(idUser)
+    
+    return res.status(200).send(dados)
+
+}
+
+export async function deleteCredentialsController(req: Request, res: Response){
+
+  const idCredentials = Number(req.params.idcredential)
+  const idUser = res.locals.idUser
+
+  if(!idCredentials){
+    const erro:IError = {code: "Unprocessable-Entity", details: "parameter must be a number"}; 
+    throw erro
+  }
+
+  const dados = await deleteCredentialService(idUser, idCredentials)
+
+  return res.status(200).send("credential successfully deleted")
+  
 }

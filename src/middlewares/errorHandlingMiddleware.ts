@@ -19,6 +19,13 @@ export default function errorHandlingMiddleware(
       return  res.status(404).send(error.details)
     }
 
+    if(error.code ==='Unprocessable-Entity'){
+
+      return  res.status(422).send(error.details)
+    }
+
+    
+
     return res.sendStatus(500);
     
 }

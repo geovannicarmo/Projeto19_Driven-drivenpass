@@ -1,30 +1,56 @@
 import client from "../dbs/posgresPrisma";
-import {Credentials} from '@prisma/client'
+import { ICredentials } from "../types/credentilsTypes";
 
-export async function createdCredentils(dataCredentials: Credentials){
+export async function createdCredentils(dataCredentials: ICredentials){
 
     await client.credentials.create({
-
         data: dataCredentials
     })
 }
 
-
 export async function findByTitleAndId(title: string, idUser: number){
-
-    console.log(idUser)
-    console.log(title)
 
   return await client.credentials.findFirst({
 
         where:{
             AND: {
                     title: title,
-                    userId:  idUser
-                    
-                    
+                    userId:  idUser 
                 }
         }
     })
+}
 
+
+export async function getAllCredentialsRepository (idUser: number){
+
+    return client.credentials.findMany({
+        where:{
+            userId: idUser
+        }
+    })
+}
+
+export async function getCredentialRepository (idUser: number, idCredentials: number){
+
+    return client.credentials.findMany({
+        where:{
+            AND: {
+                id: idCredentials,
+                userId: idUser
+            }
+        }
+    })
+}
+
+export async function deleteCredentialRepository (idUser: number, idCredentials: number){
+
+    return client.credentials.deleteMany({
+        where:{
+            AND: {
+                id: idCredentials,
+                userId: idUser
+            }
+        }
+    })
 }

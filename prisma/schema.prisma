@@ -12,12 +12,32 @@ model Users {
   email       String  @unique
   password    String  
   CredentialsUser Credentials[]
+  NotesUser Notes[]
+  WifisUser Wifis[]
 }
 
 model Credentials {
   id          Int     @id @default(autoincrement())
   url         String  
   userName    String
+  password    String  
+  title       String
+  user        Users @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+model Notes {
+  id          Int     @id @default(autoincrement()) 
+  title       String
+  text        String
+  user        Users @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+
+model Wifis {
+  id          Int     @id @default(autoincrement()) 
+  network     String
   password    String  
   title       String
   user        Users @relation(fields: [userId], references: [id])

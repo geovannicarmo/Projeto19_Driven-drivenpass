@@ -45,6 +45,8 @@ export async function getCredentialService(idUser: number, idCredentials: number
         throw erro
     }
 
+    dataCredential.password = descryptingByCryptr(dataCredential.password)
+
     return dataCredential
 }
 

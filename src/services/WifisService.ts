@@ -44,6 +44,8 @@ export async function getWifiservice(idUser: number, idWifis: number){
         throw erro
     }
 
+    dataWofi.password = descryptingByCryptr(dataWofi.password)
+
     return dataWofi
 }
 

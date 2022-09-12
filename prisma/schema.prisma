@@ -15,6 +15,7 @@ model Users {
   NotesUser Notes[]
   WifisUser Wifis[]
   CardsUser Cards[]
+  DocumentUser Documents[]
 }
 
 model Credentials {
@@ -58,4 +59,18 @@ model Cards {
   title       String
   user        Users @relation(fields: [userId], references: [id])
   userId     Int
+}
+
+
+model Documents {
+  id          Int     @id @default(autoincrement()) 
+  name     String
+  number   String 
+  title       String
+  issueDate String
+  validateDate String
+  issuer String
+  type String
+  user        Users @relation(fields: [userId], references: [id])
+  userId      Int
 }

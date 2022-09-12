@@ -32,7 +32,7 @@ export async function getDocumentservice(idUser: number, idDocuments: number){
     const dataNote= await DocumentsRepository.getDocumentRepository(idUser, idDocuments)
     
     if(!dataNote|| !dataNote.title ){
-        const erro:IError = {code: "not-found", details: "Note does not exist or does not belong to the user."}; 
+        const erro:IError = {code: "not-found", details: "Document does not exist or does not belong to the user."}; 
         throw erro
     }
 
@@ -44,7 +44,7 @@ export async function deleteDocumentservice(idUser: number, idDocuments: number)
     const dataNote= await DocumentsRepository.deleteDocumentRepository(idUser, idDocuments)
 
     if(dataNote.count===0){
-        const erro:IError = {code: "not-found", details: "Note does not exist or does not belong to the user."}; 
+        const erro:IError = {code: "not-found", details: "Document does not exist or does not belong to the user."}; 
         throw erro
     }
     return

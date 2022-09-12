@@ -54,6 +54,6 @@ export async function deleteDocumentsController(req: Request, res: Response){
 
   const dados = await deleteDocumentservice(idUser, idDocuments)
 
-  return res.status(200).send("credential successfully deleted")
+  return res.status(200).send("Documents successfully deleted")
   
 }

@@ -54,6 +54,6 @@ export async function deleteNotesController(req: Request, res: Response){
 
   const dados = await deleteNoteservice(idUser, idNotes)
 
-  return res.status(200).send("credential successfully deleted")
+  return res.status(200).send("note successfully deleted")
   
 }

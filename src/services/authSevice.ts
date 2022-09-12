@@ -33,7 +33,7 @@ export  async function loginService(dataSignin: ISigin){
 const veriryPassword = bcrypt.compareSync(dataSignin.password, dataUserRepository.password)
 
 if(!veriryPassword){
-    const erro:IError = {code: "not-found", details: "email ou senha errada"}; 
+    const erro:IError = {code: "not-found", details: "incorrect email or password"}; 
     throw erro
 }
 

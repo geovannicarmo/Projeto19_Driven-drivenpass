@@ -54,6 +54,6 @@ export async function deleteWifisController(req: Request, res: Response){
 
   const dados = await deleteWifiservice(idUser, idWifis)
 
-  return res.status(200).send("credential successfully deleted")
+  return res.status(200).send("Wi-fi successfully deleted")
   
 }

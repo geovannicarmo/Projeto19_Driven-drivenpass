@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {postWifisController, getWifisController, deleteWifisController} from "../controllers/WifisController";
+import {postWifisController, getWifisController, deleteWifisController, getidWifisController} from "../controllers/WifisController";
 import { verifyTokenMiddleware } from "../middlewares/verifyTokenMiddleware";
 import validationsMiddleware from "../middlewares/validationsMiddleware";
 import { WifisSchemas } from "../schemas/WifisSchemas";
@@ -11,7 +11,7 @@ WifisRoute.post('/wifis', validationsMiddleware(WifisSchemas), verifyTokenMiddle
 
 WifisRoute.get('/wifis',verifyTokenMiddleware, getWifisController)
 
-WifisRoute.get('/wifis/:idcredential',verifyTokenMiddleware, getWifisController)
+WifisRoute.get('/wifis/:idcredential',verifyTokenMiddleware, getidWifisController)
 
 WifisRoute.delete('/wifis/:idcredential',verifyTokenMiddleware, deleteWifisController)
 

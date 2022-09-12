@@ -15,20 +15,26 @@ export async function postWifisController(req: Request, res: Response){
    return res.status(201).send("Registration successfully complete")
 }
 
-export  async function getWifisController(req: Request, res: Response){
+export  async function getidWifisController(req: Request, res: Response){
 
     const idUser = res.locals.idUser
 
     const idWifis = Number(req.params.idcredential)
 
-    console.log(idWifis)
-
-    if(idWifis){
+    if(!idWifis){
+      const erro:IError = {code: "Unprocessable-Entity", details: "parameter must be a number"}; 
+      throw erro
+    }
       const dados = await getWifiservice(idUser, idWifis)
     
       return res.status(200).send(dados)
       
-    }
+
+  }
+
+  export  async function getWifisController(req: Request, res: Response){
+
+    const idUser = res.locals.idUser
 
     const dados = await getAllWifisService(idUser)
     

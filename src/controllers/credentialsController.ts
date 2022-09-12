@@ -15,20 +15,25 @@ export async function postCredentialsController(req: Request, res: Response){
    return res.status(201).send("Registration successfully complete")
 }
 
-export  async function getCredentialsController(req: Request, res: Response){
+export  async function getidCredentialsController(req: Request, res: Response){
 
     const idUser = res.locals.idUser
 
     const idCredentials = Number(req.params.idcredential)
 
-    console.log(idCredentials)
+    if(!idCredentials){
+      const erro:IError = {code: "Unprocessable-Entity", details: "parameter must be a number"}; 
+      throw erro
+    }
 
-    if(idCredentials){
       const dados = await getCredentialService(idUser, idCredentials)
     
       return res.status(200).send(dados)
       
-    }
+  }
+  export  async function getCredentialsController(req: Request, res: Response){
+
+    const idUser = res.locals.idUser
 
     const dados = await getAllCredentialsService(idUser)
     

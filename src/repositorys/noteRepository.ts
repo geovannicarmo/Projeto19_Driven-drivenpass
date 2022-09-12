@@ -31,9 +31,9 @@ export async function getAllNotesRepository (idUser: number){
     })
 }
 
-export async function getCredentialRepository (idUser: number, idNotes: number){
+export async function getNoteRepository (idUser: number, idNotes: number){
 
-    return client.notes.findMany({
+    return client.notes.findFirst({
         where:{
             AND: {
                 id: idNotes,
@@ -43,7 +43,7 @@ export async function getCredentialRepository (idUser: number, idNotes: number){
     })
 }
 
-export async function deleteCredentialRepository (idUser: number, idNotes: number){
+export async function deleteNoteRepository (idUser: number, idNotes: number){
 
     return client.notes.deleteMany({
         where:{

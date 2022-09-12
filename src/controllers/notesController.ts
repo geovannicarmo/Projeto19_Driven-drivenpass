@@ -15,20 +15,26 @@ export async function postNotesController(req: Request, res: Response){
    return res.status(201).send("Registration successfully complete")
 }
 
-export  async function getNotesController(req: Request, res: Response){
+export  async function getidNotesController(req: Request, res: Response){
 
     const idUser = res.locals.idUser
 
     const idNotes = Number(req.params.idcredential)
 
-    console.log(idNotes)
+    if(!idNotes){
+      const erro:IError = {code: "Unprocessable-Entity", details: "parameter must be a number"}; 
+      throw erro
+    }
 
-    if(idNotes){
+
       const dados = await getNoteservice(idUser, idNotes)
     
       return res.status(200).send(dados)
-      
-    }
+  }
+    
+  export  async function getNotesController(req: Request, res: Response){
+
+    const idUser = res.locals.idUser
 
     const dados = await getAllNotesService(idUser)
     

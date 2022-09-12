@@ -33,7 +33,7 @@ export async function getAllWifisRepository (idUser: number){
 
 export async function getWifisRepository (idUser: number, idWifis: number){
 
-    return client.wifis.findMany({
+    return client.wifis.findFirst({
         where:{
             AND: {
                 id: idWifis,

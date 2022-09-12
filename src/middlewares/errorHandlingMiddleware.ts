@@ -24,6 +24,8 @@ export default function errorHandlingMiddleware(
       return  res.status(422).send(error.details)
     }
 
+
+
     
 
     return res.sendStatus(500);

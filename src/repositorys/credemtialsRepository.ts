@@ -3,6 +3,8 @@ import { ICredentials } from "../types/credentilsTypes";
 
 export async function createdCredentils(dataCredentials: ICredentials){
 
+    console.log (dataCredentials)
+
     await client.credentials.create({
         data: dataCredentials
     })
@@ -33,7 +35,7 @@ export async function getAllCredentialsRepository (idUser: number){
 
 export async function getCredentialRepository (idUser: number, idCredentials: number){
 
-    return client.credentials.findMany({
+    return client.credentials.findFirst({
         where:{
             AND: {
                 id: idCredentials,

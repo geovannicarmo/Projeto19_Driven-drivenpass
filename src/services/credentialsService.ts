@@ -40,7 +40,7 @@ export async function getCredentialService(idUser: number, idCredentials: number
     
     const dataCredential = await credentialsRepository.getCredentialRepository(idUser, idCredentials)
     
-    if(!dataCredential){
+    if(!dataCredential || !dataCredential.title ){
         const erro:IError = {code: "not-found", details: "Credential does not exist or does not belong to the user."}; 
         throw erro
     }
